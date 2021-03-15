@@ -1,12 +1,17 @@
-import speech_recognition as sr 
+import speech_recognition as sr
+import pocketsphinx
 
-filename="record.wav"
+def speech2text():
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        r.adjust_for_ambient_noise(source)
+        audio = r.listen(source) #this is were i want to listen in the background to run it at the same 
+        #time as other code
+    try:
+        data = r.recognize_google(audio)
+        print(data)
+    except:
+        return "Error..."
 
-r= sr.Recognizer()
-
-with sr.AudioFile(filename) as source:
-    # listen for the data (load audio to memory)
-    audio_data = r.record(source)
-    # recognize data (convert from speech to text)
-    text = r.recognize_google(audio_data)
-    print(text)
+while True:
+    print(speech2text())

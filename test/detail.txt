@@ -1,0 +1,12 @@
+#modules
+pyaudio
+wave
+re
+gTTS
+os
+playsound
+time
+speech_recognition
+sounddevice
+scipy
+wavio

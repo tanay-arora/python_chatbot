@@ -1,29 +1,26 @@
 import sounddevice as sd  
-import wavio as wv
+import wavio as wv 
+import time
 import speech_recognition as sr
 import wavio as wv 
 import numpy as np
 
-from actions import wake_greeting
-from actions import perform_actions
 from playsound import playsound
-from output import output_voice_command
 from scipy.io.wavfile import write
-
 freq = 44100
-filename="recordings/recording.wav"
+duration = 3
+filename="recording.wav"
 
-def recording(duration):
-    print("listening...")
+while True:
+    r = sr.Recognizer()
+    print("recording...")
     recording = sd.rec(int(duration * freq), samplerate=freq, channels=1)  
     sd.wait() 
     y = (np.iinfo(np.int32).max * (recording/np.abs(recording).max())).astype(np.int32)
     #write file
-    wv.write(filename, y, freq, sampwidth=2)
+    wv.write(filename, y, freq, sampwidth=2) 
 
-def voice_to_text():
     try:
-        r = sr.Recognizer()
         with sr.AudioFile(filename) as source:
             # listen for the data (load audio to memory)
             audio_data = r.record(source)
@@ -31,19 +28,11 @@ def voice_to_text():
             text = r.recognize_google(audio_data)
             print(text)
     except:
-        print("no speech...")
+        print("no voice...")
         text=""
-    return text
-    
-def after_wakeup():
-    recording(5)
-    perform_actions(voice_to_text())
-
-while True:
-    recording(6)
-    to_match=["hey","hii","hlo","heya","hi"]
-    if any(x in voice_to_text().lower() for x in to_match):
-        wake_greeting()
-        after_wakeup()
-    else:
-        print("session completed...")
+    finally:
+        if "lucy" in text.lower():
+            print("hey there!")
+            break
+        else:
+            print("session completed...")
