@@ -1,8 +1,10 @@
 from gtts import gTTS
-import os
+from playsound import playsound
 
 def output_voice_command(text):
     language = 'en'
     speech = gTTS(text=text,lang=language,slow=False)
-    speech.save("test_text.mp3")
-    os.system("mpg321 test_text.mp3")
+    speech.save("recordings/output.flac")
+    if text:
+        print('... '+text)
+    playsound("recordings/output.flac")

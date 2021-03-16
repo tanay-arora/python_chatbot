@@ -22,6 +22,7 @@ def recording(duration):
     wv.write(filename, y, freq, sampwidth=2)
 
 def voice_to_text():
+    print("processing...")
     try:
         r = sr.Recognizer()
         with sr.AudioFile(filename) as source:
@@ -31,7 +32,6 @@ def voice_to_text():
             text = r.recognize_google(audio_data)
             print(text)
     except:
-        print("no speech...")
         text=""
     return text
     
@@ -40,10 +40,11 @@ def after_wakeup():
     perform_actions(voice_to_text())
 
 while True:
-    recording(6)
+    recording(3)
     to_match=["hey","hii","hlo","heya","hi"]
-    if any(x in voice_to_text().lower() for x in to_match):
+    to_check=voice_to_text().lower()
+    if any(x in to_check for x in to_match):
         wake_greeting()
         after_wakeup()
     else:
-        print("session completed...")
+        print("...")

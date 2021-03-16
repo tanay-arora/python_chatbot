@@ -8,7 +8,7 @@ def speech2text():
         audio = r.listen(source) #this is were i want to listen in the background to run it at the same 
         #time as other code
     try:
-        data = r.recognize_google(audio)
+        data = r.recognize_sphinx(audio)
         print(data)
     except:
         return "Error..."
