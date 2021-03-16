@@ -73,7 +73,6 @@ def confirm_name(name):
         
 def perform_actions(text):
     music_match=["music","track","tune","song","play something"]
-    to_check=voice_to_text().lower()
     if "your name" in text.lower():
         output_voice_command(get_output("your_name"))
         next_command()
@@ -114,7 +113,7 @@ def perform_actions(text):
     elif "record" in text.lower():
         record_user()
         next_command()
-    elif any(x in to_check for x in music_match):
+    elif any(x in text.lower() for x in music_match):
         playsound(random.choice(songs))
     else:
         global retry_value
