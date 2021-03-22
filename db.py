@@ -11,7 +11,7 @@ def get_output(keyword):
     return result[0]
 
 def store_name(name):
-    file = open("data/user_name.txt","w")
+    file = open("data/user_name.bin","wb")
     file.write(name)
     file.close()
 

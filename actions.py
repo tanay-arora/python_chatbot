@@ -78,7 +78,7 @@ def perform_actions(text):
         next_command()
     elif "my name" in text.lower():
         if get_username():
-            output_voice_command(get_output("name_available")+ get_username())
+            output_voice_command(get_output("name_available")+" "+ get_username())
             output_voice_command("Is I am correct")
             recording(5)
             to_match=["no","nah","nhi","never","notever","not","na","naa","false"]
@@ -114,7 +114,11 @@ def perform_actions(text):
         record_user()
         next_command()
     elif any(x in text.lower() for x in music_match):
+        output_voice_command(get_output("playing_song"))
         playsound(random.choice(songs))
+    elif text:
+        output_voice_command(get_output("out_of_db"))
+        next_command()
     else:
         global retry_value
         if retry_value>0:

@@ -44,7 +44,8 @@ while True:
     to_match=["hey","hii","hlo","heya","hi"]
     to_check=voice_to_text().lower()
     if any(x in to_check for x in to_match):
-        wake_greeting()
-        after_wakeup()
+        # wake_greeting()
+        # after_wakeup()
+        print("true")
     else:
         print("...")
