@@ -80,10 +80,14 @@ if __name__ == '__main__':
             time.sleep(0.5)
             command_file_name = a.process(5)
             a.voice_command_processor(command_file_name)
+<<<<<<< HEAD
             status = response.process_text(recognized_text, a) #send command from here to perform functions
             while status != 'done':
                 pass
                 
+=======
+            #status = response.process_text(recognized_text, a) #send command from here to perform functions
+>>>>>>> 0bb56a7f2f9b5d685cbece615a1d3b3397987f1e
             recognized_text = ''
         else:
             t1 = threading.Thread(target=a.voice_command_processor, args=(file_name,))

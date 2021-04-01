@@ -54,12 +54,17 @@ def process_text(text,a):
             duration = int(pre_duration) 
             if(duration>60 or duration<0):
                 duration = 10
+<<<<<<< HEAD
                 output_voice_command(get_output("unknown_number_default_set"))
+=======
+                output_voice_command(get_output("unkown_number_default_set"))
+>>>>>>> 0bb56a7f2f9b5d685cbece615a1d3b3397987f1e
         except:
             duration = 10 
             output_voice_command(get_output("error_voice_default_set"))
         record_user(duration)
     
+<<<<<<< HEAD
     if "date" in text.lower():
         
 
@@ -67,4 +72,8 @@ def process_text(text,a):
         # to_search = filter_keywords(text.lower(),["search"])
     
     return "done"
+=======
+    if "search" in text.lower():
+        to_search = filter_keywords(text.lower(),["search"])
+>>>>>>> 0bb56a7f2f9b5d685cbece615a1d3b3397987f1e
         
