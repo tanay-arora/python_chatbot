@@ -1,14 +1,16 @@
-import mysql.connector
 import random
+import json
 
-mycon=mysql.connector.connect(host="localhost",user="admin",passwd="admin12345",database="chatbot")
-
-cursor=mycon.cursor()
-def get_output(keyword):
-    cursor.execute('SELECT answer FROM arguments WHERE keyword="'+keyword+'";')
-    data=cursor.fetchall()
-    result=random.choice(data)
-    return result[0]
+file = open("./data/database.json")
+data = json.load(file)
+ 
+def get_output(key):
+    for i in data["data"]:
+        if i["keyword"] == key:
+            result=random.choice(i["revert"])
+            return result
+        else:
+            return "Sorry! your desired output is not in database but I will learn it soon"
 
 def store_name(name):
     file = open("data/user_name.bin","wb")

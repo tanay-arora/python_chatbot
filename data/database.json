@@ -1,0 +1,14 @@
+{
+    "data":[
+        {"keyword":"greeting",
+            "revert":[
+                "hey there!","hii buddy!","Heya!","Hey! it's good to see you again.","hii! I'm glad to assist you again"
+            ]
+        },
+        {"keyword":"",
+            "revert":[
+
+            ]
+        }
+    ]
+}
